@@ -1,4 +1,37 @@
 /* Your Code Here */
+function createEmployeeRecord([firstName, familyName, title, payPerHour]) {
+    return {
+        firstName: firstName,
+        familyName: familyName,
+        title: title,
+        payPerHour: payPerHour,
+        timeInEvents: [],
+        timeOutEvents: []
+    };
+}
+
+function createEmployeeRecords(employeeData) {
+    return employeeData.map(createEmployeeRecord);
+}
+
+function createTimeInEvent(employeeRecord, dateStamp) {
+    const [date, time] = dateStamp.split(' ');
+    const [hour, minute] = time.match(/\d{2}/g);
+
+    const timeInEvent = {
+        type: "TimeIn",
+        hour: parseInt(hour),
+        date: dateStamp
+    };
+
+    employeeRecord.timeInEvents.push(timeInEvent);
+    return employeeRecord;
+}
+
+
+// Example usage:
+const event = createTimeInEvent("2024-04-16 0800");
+console.log(event);
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
